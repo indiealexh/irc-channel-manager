@@ -7,3 +7,7 @@
 ## 0.1.1
 
 * Split "main" into seprate class files for ease of editing.
+
+## 0.1.2
+
+* Corrected docs, added comments

@@ -20,14 +20,23 @@ class IrcCommands {
 
   void _loadCommands() {
 
+    /*
+     * !help - lists all available commands.
+     */
     bot.command("help", (CommandEvent event) {
       event.reply("> ${Color.BLUE}Commands${Color.RESET}: ${bot.commandNames().join(', ')}");
     });
 
+    /*
+     * Lists the version of DartVM and the OS being run on.
+     */
     bot.command("dart", (CommandEvent event) {
       event.reply("> Dart VM: ${Platform.version}");
     });
 
+    /*
+     * Hugs, because who doesn't like hugs?
+     */
     bot.command("hug", (CommandEvent event) {
       String message = "hugs " + event.from;
       if (event.args.length > 0) {
@@ -37,10 +46,16 @@ class IrcCommands {
       event.channel.sendAction(message);
     });
 
+    /*
+     * Basic example command to relay information.
+     */
     bot.command("dartbot", (CommandEvent event) {
       event.reply("> GitRepo: https://github.com/indiealexh/irc-channel-manager");
     });
 
+    /*
+     * Op an authorised user
+     */
     bot.command("opme", (CommandEvent event){
       Future auth = ns.authUser(event);
       auth.then((value) {

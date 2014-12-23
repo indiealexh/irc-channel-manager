@@ -14,10 +14,16 @@ class NickServe {
     bot = mainBot;
   }
 
+  /*
+   * Login bot to NickServ
+   */
   AuthSelf(String password) {
     bot.sendMessage("NickServ","identify " + password);
   }
 
+  /*
+   * Authorise users are in the authorisedUsers list and are logged into NickServ
+   */
   Future<bool> authUser(CommandEvent event){
 
     Completer completer = new Completer();

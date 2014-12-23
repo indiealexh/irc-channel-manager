@@ -1,6 +1,3 @@
-// Copyright (c) 2014, <your name>. All rights reserved. Use of this source code
-// is governed by a BSD-style license that can be found in the LICENSE file.
-
 import 'package:irc/bot.dart';
 import 'package:irc/client.dart';
 
@@ -8,6 +5,9 @@ import 'package:pledgemircbot/nickserve.dart';
 import 'package:pledgemircbot/commands.dart';
 
 main() {
+  /*
+   * Irc Connection configuration
+   */
   IrcConfig config = new IrcConfig(
       host: "irc.freenode.net",
       port: 6667,
@@ -15,19 +15,19 @@ main() {
       username: "DartBot"
   );
 
-  CommandBot bot = new CommandBot(config, prefix: "!");
+  CommandBot bot = new CommandBot(config, prefix: "!"); //Define the command prefix e.g. !command
   NickServe ns;
   IrcCommands ic;
 
   bot.register((MOTDEvent event) {
     print("Connected");
-    ns = new NickServe(bot);
+    ns = new NickServe(bot);//Setup nickserv class instance
   });
 
   bot.register((ReadyEvent event) {
-    ns.AuthSelf("BotPass");
-    event.join("#channel");
-    ic = new IrcCommands(bot,ns);
+    ns.AuthSelf("BotPass");//Log bot into nickserv
+    event.join("#channel");//Join irc channel
+    ic = new IrcCommands(bot,ns);//Register commands
   });
 
   bot.register((BotJoinEvent event) {
